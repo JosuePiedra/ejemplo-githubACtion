@@ -5,14 +5,13 @@ on: [push]
 jobs:
   inicio:
     runs-on: macos-latest
-    #Pasoso
+    #Pasos
     steps:
       - name: mostrar texto
         run: echo "Hola mundo"
   build:
-      runs-on: macos-latest
-      needs: [inicio]
-      steps:
-        - name: texto
-          run: echo "Construir"
-
+    runs-on: macos-latest
+    needs: [inicio]
+    steps:
+      - name: mostrar texto
+        run: echo "Adios"
