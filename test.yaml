@@ -1,0 +1,11 @@
+name: Ejemplo CI/CD
+
+on: [push]
+
+jobs:
+  inicio:
+    runs-on: macos-latest
+    #Pasoso
+    steps:
+      - name: mostrar texto
+        run: echo "Hola mundo"
