@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: mostrar texto
         run: echo "Hola mundo"
-  bluid:
+  build:
       runs-on: macos-latest
       needs: [inicio]
       steps:
