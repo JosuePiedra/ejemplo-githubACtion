@@ -17,6 +17,10 @@ jobs:
     steps:
       - name: mostrar texto
         run: echo "Adios"
+      - name: instalar php y composer MacOs
+        run: |
+          brew install php
+          brew install composer
   test:
     runs-on: macos-latest
     needs: [build]
