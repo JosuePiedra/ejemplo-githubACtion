@@ -30,6 +30,29 @@ jobs:
                 sleep 10  # Esperar 10 segundos para asegurarse de que MySQL inicia correctamente
                 mysqladmin -u root password "root"
                 mysql -u root -proot -e "CREATE DATABASE lumen_db;"
+      - ⁠name: Instalar dependencias de Laravel Lumen
+              run: |
+                  cd $GITHUB_WORKSPACE  # Asegurar que estamos en el directorio correcto
+                  ls -la  # Mostrar archivos en el workspace para depuración
+                  composer install --no-interaction --prefer-dist --no-scripts --no-progress
+                  if [ -f .env.example ]; then cp .env.example .env; else touch .env; fi
+                  
+            - name: ⚡ Ejecutar migraciones y seeders
+              env:
+                DB_CONNECTION: mysql
+                DB_HOST: 127.0.0.1
+                DB_PORT: 3306
+                DB_DATABASE: lumen_db
+                DB_USERNAME: root
+                DB_PASSWORD: root
+              run: |
+                if [ -f artisan ]; then
+                  php artisan migrate --force
+                  php artisan db:seed --force
+                else
+                  echo "⚠️ Archivo artisan no encontrado"
+                  exit 1
+                fi
 
   test:
     runs-on: macos-latest
