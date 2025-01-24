@@ -9,3 +9,10 @@ jobs:
     steps:
       - name: mostrar texto
         run: echo "Hola mundo"
+  bluid:
+      runs-on: macos-latest
+      needs: [inicio]
+      steps:
+        - name: texto
+          run: echo "Construir"
+
