@@ -21,6 +21,12 @@ jobs:
         run: |
           brew install php
           brew install composer
+          php -v
+          composer --version
+      - name: instala MySql
+        run: |
+          brew install mysql
+          mysql --version
   test:
     runs-on: macos-latest
     needs: [build]
