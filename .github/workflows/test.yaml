@@ -26,7 +26,11 @@ jobs:
       - name: instala MySql
         run: |
           brew install mysql
-          mysql --version
+          brew services start mysql
+                sleep 10  # Esperar 10 segundos para asegurarse de que MySQL inicia correctamente
+                mysqladmin -u root password "root"
+                mysql -u root -proot -e "CREATE DATABASE lumen_db;"
+
   test:
     runs-on: macos-latest
     needs: [build]
